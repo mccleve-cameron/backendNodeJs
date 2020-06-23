@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#form {
+  background-color: blanchedalmond;
+}
+
+section {
+  padding: 5px;
+  border: 1px solid;
+margin-top: auto;
+margin-bottom: auto;
+}
