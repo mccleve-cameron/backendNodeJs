@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>test</title>
+	<link rel='stylesheet' href='../../public/stylesheets/style.css' />
+</head>
+
+<body>
+    <h2>Fill out your package information</h2>
+    <h3>Then click submit</h3>
+	<form action="/receipt" id="form" method="GET">
+		<section>
+			<input type="text" name="iWeight" id="weight" placeholder="item weight"><b> oz.</b>
+		</section>
+		<section>
+			<input type="radio" id="stamped" name="mail" value="Stamped Letter"><b>Letters (Stamped)</b>
+		</section>
+		<section>
+			<input type="radio" id="metered" name="mail" value="Metered Letter"><b>Letters (Metered)</b>
+		</section>
+		<section>
+			<input type="radio" id="envelope" name="mail" value="Envelope"><b>Large Envelopes (Flats)</b>
+		</section>
+		<section>
+			<input type="radio" id="package" name="mail" value="Package"><b>First-Class Package Service-Retail</b>
+        </section>
+        <section id="buttons">
+            <button type="reset">Reset</button>
+            <button type="submit" id="submit">Submit</button>
+        </section>
+    </form>
+    <footer>
+        &copy; 2020 | CSE 341 | Cameron McCleve
+    </footer>
+</body>
+
+</html>
