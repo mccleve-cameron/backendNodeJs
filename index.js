@@ -31,8 +31,95 @@ express()
   .get('/users', (req, res) => res.render('pages/users'))
   .post('/getUsers', getUsers)
 
+  .get('/bodyMap', (req, res) => res.render('pages/bodyMap'))
+  .get('/chest', (req, res) => res.render('pages/chest'))
+  // .get('/chest', (req, res) => {
+  //   const name = req.query.
+
+  //   const cost = calcRate(mailType, weight);
+
+  //   param = { weight: weight, mailType: mailType, cost: cost}
+  //   res.render('pages/receipt', param)
+  // })
+  .post('/getWorkouts', getWorkouts)
+  // .get('/workout', getWorkout)
+  // .post('/getDescription', getDescription)
+
   .get('/cool', (req, res) => res.send(cool()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+//   function getWorkout(request, response) {
+//  const name = request.query.workout;
+
+//     queryWorkout(name, function(error, result) {
+
+//       if (error || result == null || result.length == 0) {
+//         response.status(500).json({success: false, data: error});
+//       } else {
+//         const workout = result;
+//         response.status(200).json(workout);
+//       }
+//     });
+//   }
+
+//   function queryWorkout(name, callback) {
+//     console.log(name);
+
+//     const sql = "SELECT * FROM chest WHERE name= $1::text";
+
+//     params = [name];
+  
+
+//     pool.query(sql, params, function(err, result) {
+//       // If an error occurred...
+//       if (err) {
+//         console.log("Error in query: ")
+//         console.log(err);
+//         callback(err, null);
+//       }
+  
+//       // Log this to the console for debugging purposes.
+//       console.log("Found result: " + JSON.stringify(result.rows));
+
+//       callback(null, result.rows);
+//     });
+  
+//   }
+
+
+  function getWorkouts(request, response) {
+ 
+    queryWorkouts(function(error, result) {
+
+      if (error || result == null || result.length == 0) {
+        response.status(500).json({success: false, data: error});
+      } else {
+        const workout = result;
+        response.status(200).json(workout);
+      }
+    });
+  }
+
+  function queryWorkouts(callback) {
+    console.log("Getting person from DB with id: ");
+
+    const sql = "SELECT * FROM chest";
+
+    pool.query(sql, function(err, result) {
+      // If an error occurred...
+      if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+        callback(err, null);
+      }
+  
+      // Log this to the console for debugging purposes.
+      console.log("Found result: " + JSON.stringify(result.rows));
+
+      callback(null, result.rows);
+    });
+  
+  }
 
   function getUsers(request, response) {
     // First get the person's id

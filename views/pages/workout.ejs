@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<header>
+    <h1>Workout Name</h1>
+</header>
+<body>
+ <p>Desccription:</p>
+ <p>The person performing the exercise lies on their back on a bench with a 
+     barbell grasped in both hands. They lower the barbell to chest level, 
+     then press the barbell upwards, extending the arms until the elbows are 
+     locked out. This is one repetition (rep).</p>
+ <p>Image:</p>
+</body>
+<footer>
+    <div class="icon">left</div>
+    <div class="icon"><img src="whiteBody.png" alt=""></div>
+    <div class="icon">Log</div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    function loadWorkouts()
+    {
+      console.log('checkout run');
+      $.ajax({
+        url: '/getWorkouts',
+        type: 'POST',
+        dataType: 'json', //will parse json into javascript object
+        //callback called when suceed
+        success: (data) => {
+          console.log('ajax success!', data);
+             product = "";
+          $.each(data, function (index, value) {
+            product += "<form action='/workout' method='GET'><button class='bar' type='submit'><div><img src=../images/" + this.image_path + " class='imageIcon'></div>";
+            product += "<div><h3 name='workout' value="+ this.id +">"+ this.name +"</h3></div></button></form>";
+          });// END LOOP
+        //added end
+          result = "";
+          result = product;
+          //select status id element display in html
+          $('#table').html(result);
+        }//sucess data call
+      });//ajax function call
+      //CART CLICK AJAX END
+    }//cartPopup on click
+</script>
+</html>

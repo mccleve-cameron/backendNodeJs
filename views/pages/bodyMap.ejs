@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+<header>
+    <h1>Pick muscle</h1>
+</header>
+<div id="content">
+    <div id="frontImage">
+        <img src="/images/whiteBody.png" usemap="#image-map">
+    </div>
+
+    <map name="image-map">
+        <form action="/chest" method="get">
+            <area target="" alt="chest" title="chest" href="/chest" type="submit" coords="99,99,93,122,102,148,129,154,151,141,166,150,187,151,204,137,207,111,188,92,160,102,149,115,139,97,118,94" shape="poly">
+        </form>
+        <area target="" alt="abs" title="abs" href="abs.html" coords="124,154,122,200,126,231,137,265,148,280,159,277,167,250,175,225,179,191,174,152,150,148" shape="poly">
+        <area target="" alt="leftThigh" title="leftThigh" href="thighs.html" coords="120,248,94,281,82,342,96,383,131,393,144,375,145,335,146,296" shape="poly">
+        <area target="" alt="rightThigh" title="rightThigh" href="thighs.html" coords="180,248,168,272,156,289,154,330,159,379,174,393,187,384,203,380,215,349,216,321,205,276" shape="poly">
+    </map>
+</div>
+
+<footer>
+    <div class="icon"><p>Settings</p></div>
+    <a href="/bodyMap"><div class="icon"><img src="/images/whiteBody.png" alt=""></div></a>
+    <div class="icon"><p>Log</p></div>
+</footer>
+</html>
