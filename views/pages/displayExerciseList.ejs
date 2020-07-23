@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 <body onload="loadWorkouts()">
-    <h1>Select a Chest Workout</h1>
+    <h1>Select an Exercise</h1>
 <div id="table"></div>
 </body>
 <footer class="bottom">
@@ -19,20 +19,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script>
-    function loadWorkouts()
-    {
+
+  function loadWorkouts()
+  {
+    const urlParams = new URLSearchParams(window.location.search);
+    const muscle = urlParams.get('muscle');
+    console.log(muscle);
+    data = {};
+    data['muscle'] = muscle;
       console.log('checkout run');
       $.ajax({
-        url: '/getWorkouts',
+        url: '/getExerciseList',
         type: 'POST',
         dataType: 'json', //will parse json into javascript object
         //callback called when suceed
+        data: data,
         success: (data) => {
           console.log('ajax success!', data);
              product = "";
           $.each(data, function (index, value) {
-            product += "<form action='/workout' method='GET'><button class='bar' type='submit'><div><img src=../images/" + this.image_path + " class='imageIcon'></div>";
-            product += "<div><h3 name='workout' value="+ this.id +">"+ this.name +"</h3></div></button></form>";
+            product += `
+            <form action='/displayExerciseDetails' method='GET'>
+                <button class='bar' type='submit' name='workout' value=${this.id}>
+                  <input type="hidden" name="muscle" value=${muscle}>
+                  <div><img src=../images/${muscle}/${this.image_path} class='imageIcon'></div>
+                  <div><h3 name='workout' value=${this.id}>${this.name}</h3></div>
+                </button>
+              </form>`;
           });// END LOOP
         //added end
           result = "";

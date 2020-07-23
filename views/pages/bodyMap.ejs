@@ -6,6 +6,7 @@
     <title>Map</title>
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <header>
     <h1>Pick muscle</h1>
 </header>
@@ -15,12 +16,38 @@
     </div>
 
     <map name="image-map">
-        <form action="/chest" method="get">
-            <area target="" alt="chest" title="chest" href="/chest" type="submit" coords="99,99,93,122,102,148,129,154,151,141,166,150,187,151,204,137,207,111,188,92,160,102,149,115,139,97,118,94" shape="poly">
+        <form action="/displayExerciseList">
+            <button name="muscle" value="chest" type="submit">
+                <area
+                coords="99,99,93,122,102,148,129,154,151,141,166,150,187,151,204,137,207,111,188,92,160,102,149,115,139,97,118,94" 
+                shape="poly">
+            </button>
+            <button name="muscle" value="abs" type="submit">
+                <area coords="124,154,122,200,126,231,137,265,148,280,159,277,167,250,175,225,179,191,174,152,150,148" shape="poly">
+            </button>
+            <button name="muscle" value="thighs" type="submit">
+                <area coords="120,248,94,281,82,342,96,383,131,393,144,375,145,335,146,296" shape="poly">
+                <area coords="180,248,168,272,156,289,154,330,159,379,174,393,187,384,203,380,215,349,216,321,205,276" shape="poly">
+            </button>
+            <button name="muscle" value="biceps" type="submit">
+                <area coords="63,187,65,147,73,129,90,119,97,136,90,168" shape="poly">
+                <area coords="236,187,211,166,202,143,210,119,226,129,236,149" shape="poly">
+            </button>
+            <button name="muscle" value="delts" type="submit">
+                <area coords="64,121,68,102,82,90,103,89,114,91,97,99,92,117,78,124,70,136" shape="poly">
+                <area coords="208,120,205,104,197,96,189,92,209,88,222,93,230,102,236,118,232,136,220,122" shape="poly">
+            </button>
+            <button name="muscle" value="traps" type="submit">
+                <area coords="122,93,112,92,103,88,94,87,99,78,108,70,120,65,133,62,135,80,160,80,167,63,181,66,192,70,201,77,207,88,193,89,184,92,177,93,160,82,134,82,135,80" shape="poly">
+            </button>
+            <button name="muscle" value="forearms" type="submit">
+                <area coords="30,263,38,239,41,220,46,197,58,185,89,190,91,204,87,220,65,241,46,268" shape="poly">
+                <area coords="270,261,259,225,255,195,243,185,210,189,210,209,220,222,233,237,254,268" shape="poly">
+            </button>
+            <button name="muscle" value="calves" type="submit">
+                <area coords="103,518,83,458,83,421,96,401,126,404,150,429,181,403,203,403,219,426,213,468,197,519,184,519,149,439,116,520" shape="poly">
+            </button>
         </form>
-        <area target="" alt="abs" title="abs" href="abs.html" coords="124,154,122,200,126,231,137,265,148,280,159,277,167,250,175,225,179,191,174,152,150,148" shape="poly">
-        <area target="" alt="leftThigh" title="leftThigh" href="thighs.html" coords="120,248,94,281,82,342,96,383,131,393,144,375,145,335,146,296" shape="poly">
-        <area target="" alt="rightThigh" title="rightThigh" href="thighs.html" coords="180,248,168,272,156,289,154,330,159,379,174,393,187,384,203,380,215,349,216,321,205,276" shape="poly">
     </map>
 </div>
 
@@ -29,4 +56,18 @@
     <a href="/bodyMap"><div class="icon"><img src="/images/whiteBody.png" alt=""></div></a>
     <div class="icon"><p>Log</p></div>
 </footer>
+<script>
+    var name = '';
+    var value ='';
+    function pickMuscle(element) {
+        var element = $(element);
+        name = element.attr("name");
+        value = element.val();
+        $.get("/displayExerciseList", {name: value}, function(result){
+            console.log('running /displayExerciseList');
+            console.log(name);
+            console.log(value);
+        });
+    }
+</script>
 </html>
